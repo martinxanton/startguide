@@ -9,7 +9,7 @@ import {
 } from "./modalFormsComponents";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
-const apiUrl = import.meta.env.API_URL;
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const ModalForms = ({ show, handleClose }) => {
   const token = localStorage.getItem("token");
@@ -108,11 +108,11 @@ const ModalForms = ({ show, handleClose }) => {
         className="modal-toggle"
       />
       <div className="modal" role="dialog">
-        <div className="modal-box w-3/5 h-5/6 max-w-full p-0 flex gap-7">
-          <div className="w-1/3 flex items-center justify-center p-5">
+        <div className="modal-box tablet:w-3/5 h-4/5 tablet:h-5/6 max-w-full p-0 flex flex-col tablet:flex-row gap-7">
+          <div className="tablet:w-1/3 flex items-center justify-center p-5">
             <Stepper index={activeStep} />
           </div>
-          <div className="w-2/3 flex flex-col justify-between bg-base-300 px-12 py-10">
+          <div className="tablet:w-2/3 flex-1 flex flex-col justify-between bg-base-300 px-12 py-10">
             {activeStep === 0 ? (
               <StepOne
                 values={formValues}

@@ -52,13 +52,13 @@ function ChatPage({ modeChat }) {
       if (!token) {
         setShowModalForm(false);
         setShowModalAuth(true);
-        //console.log("No hay token");
-        navigate("/u/");
+        console.log("No hay token");
+        navigate("/");
         setLoading(false); // Finaliza la carga
         console.log("No hay token");
         return;
       }
-      //console.log("Token:", token);
+      console.log("Token:", token);
       try {
         const isValidToken = await verifyToken();
         if (!isValidToken) {
@@ -245,7 +245,7 @@ function ChatPage({ modeChat }) {
       console.log("UUID existente:", newUUID);
     }
 
-    navigate(`/${newUUID}`);
+    navigate(`/chat/${newUUID}`);
     setActiveConversation(newUUID);
     try {
       const response = await fetch(`${apiUrl}/api/chat`, {
@@ -300,14 +300,14 @@ function ChatPage({ modeChat }) {
       );
 
       if (!response.ok) {
-        navigate("/u/");
+        navigate("/");
       }
       console.log("Trayendo historial de conversación de: ", uuid);
       const data = await response.json();
       console.log("Fetched conversation history:", data.history.slice(2));
       setMessages(data.history.slice(2));
       await handleBotId(data.botId);
-      navigate(`/${uuid}`);
+      navigate(`/chat/${uuid}`);
     } catch (error) {
       console.error("Error fetching conversation history:", error);
     }

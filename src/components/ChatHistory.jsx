@@ -72,7 +72,7 @@ const ChatHistory = ({
 
   const goRecommendation = (id) => {
     return () => {
-      navigate(`/u/${id}`);
+      navigate(`/${id}`);
       handleSetActiveConversation(null);
     };
   };

@@ -23,7 +23,7 @@ const Historial = ({ chatMode, activeConversation, conversations, handleSetActiv
           chatMode === 1 ? "btn-disabled" : ""
         } w-full flex justify-center`}
         onClick={() => {
-          navigate("/u/"), handleSetActiveConversation(null), handleBotId(1);
+          navigate("/"), handleSetActiveConversation(null), handleBotId(1);
         }}
       >
         <span className="material-symbols-rounded">add</span>

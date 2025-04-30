@@ -20,11 +20,11 @@ const Stepper = ({ index }) => {
 
   return (
     <div className="h-full flex items-center">
-      <ul className="font-semibold steps steps-vertical h-4/5">
+      <ul className="font-semibold steps gap-3 tablet:steps-vertical tablet:h-4/5">
         {steps.map((step, index) => (
           <li
             key={index}
-            className={`step ${index <= currentStep ? "step-secondary" : ""}`}
+            className={`step text-xs tablet:text-md ${index <= currentStep ? "step-secondary" : ""}`}
           >
             {step}
           </li>

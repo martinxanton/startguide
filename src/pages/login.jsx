@@ -6,22 +6,24 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token) {
-      navigate("/u/");
+      //token
+      console.log("Token encontrado:", token);
+      navigate("/");
     }
   }, [token, navigate]);
 
   const handleSubmit = (event) => {
-    console.log("submit");
-    console.log(`${apiUrl}/api/auth/login`);
     event.preventDefault();
     if (!username || !password) {
       setError("Por favor, ingresa el nombre de usuario y la contraseña");
     } else {
+      setLoading(true);
       setError("");
       axios
         .post(`${apiUrl}/api/auth/login`, {
@@ -31,9 +33,11 @@ const LoginPage = () => {
         .then((response) => {
           const { token } = response.data;
           localStorage.setItem("token", token);
-          navigate("/u/1");
+          console.log("Token guardado:", token);
+          navigate("/1");
         })
         .catch((err) => {
+          setLoading(false);
           if (err.response && err.response.data && err.response.data.msg) {
             setError(err.response.data.msg); // Mostrar el mensaje de error del backend
           } else {
@@ -46,8 +50,8 @@ const LoginPage = () => {
 
   return (
     <div className="hero min-h-screen bg-base-200 w-full flex items-center justify-center">
-      <main className="bg-base-100 p-12 rounded-lg shadow-lg">
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <main className="tablet:bg-base-100 bg-base-300 p-12 tablet:rounded-lg h-screen tablet:h-min desktop:w-1/4 laptop:w-1/3 tablet:w-4/5 w-full shadow-lg flex justify-center items-center">
+        <form onSubmit={handleSubmit} className="space-y-6 w-full">
           <h1 className="text-2xl font-semibold text-center">Iniciar Sesión</h1>
           <p className="text-sm">
             ¿Aún no tienes cuenta?{" "}
@@ -114,9 +118,10 @@ const LoginPage = () => {
           {error && <div className="text-red-500 text-sm">{error}</div>}
 
           <button
-            className="btn btn-primary w-full rounded-full "
+            className={`btn btn-primary w-full rounded-full ${ loading ? 'btn-disabled' : '' }`}
             type="submit"
           >
+            { loading ? (<span className="loading loading-spinner"></span>) : '' }
             Iniciar Sesión
           </button>
         </form>

@@ -97,7 +97,7 @@ const ChatNew = ({ handleSetCurrentMessage, handleBotId, idRecomendation }) => {
     if (idRecomendation) {
       if (idRecomendation > 5) {
         setSelectedPersonality(null);
-        navigate("/u/");
+        navigate("/");
       } else {
         setSelectedPersonality(personality[idRecomendation - 1]);
       }
@@ -144,7 +144,7 @@ const ChatNew = ({ handleSetCurrentMessage, handleBotId, idRecomendation }) => {
                     onClick={() => {
                       setSelectedPersonality(person);
                       handleBotId(person.id);
-                      navigate(`/u/${person.id}`);
+                      navigate(`/${person.id}`);
                       setIsChecked(false);
                     }}
                   >
