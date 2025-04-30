@@ -6,7 +6,7 @@ import Logout from '../components/Logout';
 
 function AppRoutes() {
   return (
-    <Router basename="/startguide/">
+    <Router basename="/">
         <Routes>
             <Route path="/auth/login" element={<LoginPage />} />
             <Route path="/auth/register" element={<RegisterPage />} />
