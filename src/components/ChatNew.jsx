@@ -165,7 +165,7 @@ const ChatNew = ({ handleSetCurrentMessage, handleBotId, idRecomendation }) => {
             ))}
         </div>
       </div>
-      <div className="flex gap-5 justify-center pb-10 items-center">
+      <div className="tablet:flex gap-5 tablet:justify-center tablet:flex-row tablet:pb-10 pb-5 tablet:items-center grid grid-cols-2">
         {selectedPersonality.questions.map((question, index) => (
           <div
             key={index}
